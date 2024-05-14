@@ -3,21 +3,21 @@ import userInfoStore from "@/stores/userInfo.js";
 import moment from "moment";
 import {useRouter} from "vue-router";
 import {ref} from "vue";
-let loginId = ''
-let password = ''
-let hasError = ref(false)
-let errorMessage = ref('')
+const loginId = ref('')
+const password = ref('')
+const hasError = ref(false)
+const errorMessage = ref('')
 const userInfo = userInfoStore()
 const router = useRouter()
 function doLogin() {
   // console.log("doLogin", loginId, password);
-  if (password !== 'test') {
+  if (password.value !== 'test') {
     // 这里为了测试 ，随便定一个密码
     hasError.value = true
     errorMessage.value = '登录失败, 密码应当是test'
     return
   }
-  userInfo.login(loginId, moment().format('YYYY-MM-DD'));
+  userInfo.login(loginId.value, moment().format('YYYY-MM-DD'));
   hasError.value = false
   errorMessage.value = ''
   router.push('/home/dashboard')
