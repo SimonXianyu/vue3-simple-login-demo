@@ -7,6 +7,7 @@ const userInfo = userInfoStore()
 <template>
 <div>
   <h1>Welcome {{userInfo.nickname}}</h1>
+  <h1>登录时间：{{userInfo.lastLogin}}</h1>
 </div>
 </template>
 

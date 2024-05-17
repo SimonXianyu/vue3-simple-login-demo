@@ -1,26 +1,26 @@
 import {defineStore} from "pinia";
-import {computed, ref} from "vue";
+import {computed, reactive} from "vue";
 
 const userInfoStore = defineStore('userInfo', () =>{
-    const userInfo = ref( {
+    const userState = reactive( {
         login: false,
         nickname: null,
         lastLogin: null
     })
 
-    const isLogin = computed(() => userInfo.value.login)
-    const nickname = computed(() => userInfo.value.nickname)
-    const lastLogin = computed(() => userInfo.value.lastLogin)
+    const isLogin = computed(() => userState.login)
+    const nickname = computed(() => userState.nickname)
+    const lastLogin = computed(() => userState.lastLogin)
 
     function login(nickname, lastLogin) {
-        userInfo.value.nickname = nickname
-        userInfo.value.lastLogin = lastLogin
-        userInfo.value.login = true
+        userState.nickname = nickname
+        userState.lastLogin = lastLogin
+        userState.login = true
     }
     function logout() {
-        userInfo.value.nickname = null
-        userInfo.value.lastLogin = null
-        userInfo.value.login = false
+        userState.nickname = null
+        userState.lastLogin = null
+        userState.login = false
     }
 
     return {isLogin, nickname, lastLogin, login, logout}
